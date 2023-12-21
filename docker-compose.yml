@@ -1,8 +1,6 @@
-
 services:
-
   app:
-    image: 'docker-angular:latest'
+    image: "docker-angular:latest"
     build:
       context: ./frontend/
       dockerfile: Dockerfile
@@ -18,14 +16,14 @@ services:
       - frontend
 
   api:
-    image: 'docker-spring-boot-postgres:latest'
+    image: "docker-spring-boot-postgres:latest"
     build:
       context: .
       dockerfile: ./backend/Dockerfile
     expose:
       - 8080
     ports:
-        - "8080:8080"
+      - "8080:8080"
     container_name: api
     depends_on:
       - db
@@ -39,7 +37,7 @@ services:
       - backend
       - frontend
   db:
-    image: 'postgres'
+    image: "postgres"
     expose:
       - 5432
     ports:
