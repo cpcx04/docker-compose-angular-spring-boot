@@ -1,21 +1,8 @@
 
 services:
 
-  app:
-    image: 'docker-angular:latest'
-    build:
-      context: ./frontend/
-      dockerfile: Dockerfile
-    expose:
-      - 80
-    ports:
-      - "8087:80"
-    container_name: app
-    depends_on:
-      - api
-    restart: unless-stopped
-    networks:
-      - frontend
+
+
 
   api:
     image: 'docker-spring-boot-postgres:latest'
@@ -26,7 +13,7 @@ services:
       - 8080
     ports:
         - "8080:8080"
-    container_name: api
+    container_name: app
     depends_on:
       - db
     environment:

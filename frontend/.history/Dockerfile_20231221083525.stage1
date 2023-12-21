@@ -1,0 +1,12 @@
+FROM node:12.22-alpine as build
+
+WORKDIR /usr/angular
+
+COPY ./package.json .
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+

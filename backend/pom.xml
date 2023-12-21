@@ -8,12 +8,22 @@
 	<name>backend</name>
 	<description>Módulo backend do projeto colaborador</description>
 
-	<parent>
+	<!--<parent>
 		<artifactId>projeto-colaborador</artifactId>
 		<groupId>br.net.mirante</groupId>
 		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+	</parent>-->
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<version>1.0.0-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -47,12 +57,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>br.net.mirante</groupId>
-			<artifactId>frontend</artifactId>
-			<version>${project.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>

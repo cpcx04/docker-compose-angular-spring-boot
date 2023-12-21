@@ -11,11 +11,6 @@ services:
     ports:
       - "8087:80"
     container_name: app
-    depends_on:
-      - api
-    restart: unless-stopped
-    networks:
-      - frontend
 
   api:
     image: 'docker-spring-boot-postgres:latest'

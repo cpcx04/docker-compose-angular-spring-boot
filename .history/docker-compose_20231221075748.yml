@@ -1,23 +1,7 @@
+version: '3'
 
 services:
-
   app:
-    image: 'docker-angular:latest'
-    build:
-      context: ./frontend/
-      dockerfile: Dockerfile
-    expose:
-      - 80
-    ports:
-      - "8087:80"
-    container_name: app
-    depends_on:
-      - api
-    restart: unless-stopped
-    networks:
-      - frontend
-
-  api:
     image: 'docker-spring-boot-postgres:latest'
     build:
       context: .
@@ -26,24 +10,21 @@ services:
       - 8080
     ports:
         - "8080:8080"
-    container_name: api
+    container_name: app
     depends_on:
       - db
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5435/projetoclientedb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/projetoclientedb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     restart: unless-stopped
-    networks:
-      - backend
-      - frontend
   db:
     image: 'postgres'
     expose:
       - 5432
     ports:
-      - "5435:5432"
+      - "5432:5432"
     container_name: db
     environment:
       - POSTGRES_USER=postgres
@@ -52,11 +33,6 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - backend
 volumes:
   postgres-data:
 
-networks:
-  backend:
-  frontend:
